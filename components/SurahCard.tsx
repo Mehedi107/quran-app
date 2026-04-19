@@ -27,7 +27,7 @@ export default function SurahCard({ surah }: Props) {
 
             <div>
               <h2 className="text-lg font-bold text-gray-500">
-                {surah.translation}
+                {surah.transliteration}
               </h2>
 
               <p className="text-sm text-gray-500">
