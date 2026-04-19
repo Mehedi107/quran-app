@@ -4,9 +4,15 @@ import { useSettings } from "./SettingsProvider";
 
 type Props = {
   verse: {
-    id: number;
-    arabic: string;
-    translation: string;
+    chapter: number; 
+    arabic_sura_name: string; 
+    total_verses: number; 
+    verse: number; 
+    arabic_verse: string; 
+    eng_verse: string; 
+    eng_sura_name: string; 
+    eng_transliteration: string; 
+    type: string;  
   };
 };
 
@@ -23,17 +29,17 @@ export default function VerseCard({ verse }: Props) {
       <div className="flex justify-between gap-4 items-start">
 
         <span className="text-sm bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">
-          {verse.id}
+          {verse.verse}
         </span>
 
         <p
-          className="text-right flex-1 leading-loose"
+          className="text-right flex-1 leading-loose text-gray-700"
           style={{
             fontFamily: arabicFont,
             fontSize: `${arabicSize}px`,
           }}
         >
-          {verse.arabic}
+          {verse.arabic_verse}
         </p>
 
       </div>
@@ -44,7 +50,7 @@ export default function VerseCard({ verse }: Props) {
           fontSize: `${translationSize}px`,
         }}
       >
-        {verse.translation}
+        {verse.eng_verse}
       </p>
     </div>
   );

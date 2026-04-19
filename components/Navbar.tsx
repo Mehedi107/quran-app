@@ -12,7 +12,7 @@ export default function Navbar() {
           Quran Explorer
         </Link>
 
-        <nav className="flex gap-5 text-sm font-medium">
+        <nav className="flex gap-5 text-sm font-bold text-gray-600">
           <Link href="/">Home</Link>
           <Link href="/search">Search</Link>
         </nav>

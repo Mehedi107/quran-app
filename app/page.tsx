@@ -2,6 +2,7 @@ import surahs from "@/data/surahs.json";
 import SurahCard from "@/components/SurahCard";
 
 export default function HomePage() {
+
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-10">
       <div className="max-w-5xl mx-auto">

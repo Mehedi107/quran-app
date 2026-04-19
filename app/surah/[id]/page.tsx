@@ -1,5 +1,6 @@
-import surahs from "@/data/surahs.json";
-import verses from "@/data/verses.json";
+import surahList from "@/data/suraShort.json";
+import arabicData from "@/data/quran.ar.json";
+import englishData from "@/data/quran.en.json";
 import VerseCard from "@/components/VerseCard";
 import { notFound } from "next/navigation";
 import SettingsSidebar from "@/components/SettingsSidebar";
@@ -12,15 +13,29 @@ type Props = {
 };
 
 export default async function SurahPage({ params }: Props) {
-  const { id } = await params;
+    const { id } = await params;
 
-  const surah = surahs.find(
-    (item) => item.id === Number(id)
-  );
+    const surahInfo = surahList.find((s) => s.id === Number(id));
 
-  if (!surah) return notFound();
+    if (!surahInfo) return notFound();
 
-  const ayahs = verses[id as keyof typeof verses] || [];
+    const arabicVerses = arabicData[id as keyof typeof arabicData] || [];
+    const englishVerses = englishData[id as keyof typeof englishData] || [];
+
+
+    const combinedVerses = arabicVerses.map((arabicVerse, index) => ({
+      chapter: arabicVerse.chapter,
+      arabic_sura_name: surahInfo.name,
+      total_verses: surahInfo.total_verses,
+      verse: arabicVerse.verse,
+      arabic_verse: arabicVerse.text,
+      eng_verse: englishVerses[index]?.text ?? "",
+      eng_sura_name: surahInfo.translation,
+      eng_transliteration:surahInfo.transliteration,
+      type: surahInfo.type 
+    }));
+
+    console.log(surahInfo);
 
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-10">
@@ -33,21 +48,22 @@ export default async function SurahPage({ params }: Props) {
           <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-600">
-            {surah.name_english}
+            {surahInfo.transliteration}
           </h1>
 
           <p className="text-3xl text-gray-700 mt-3">
-            {surah.name_arabic}
+            {surahInfo.name}
           </p>
 
           <p className="text-gray-500 mt-2">
-            {surah.verses} Ayahs
+            {surahInfo.total_verses} Ayahs
           </p>
         </div>
 
         <div className="space-y-4">
-          {ayahs.map((verse) => (
-            <VerseCard key={verse.id} verse={verse} />
+          {combinedVerses.map((verse) => (
+
+            <VerseCard key={verse.verse} verse={verse}/>
           ))}
         </div>
 
