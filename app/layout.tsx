@@ -37,7 +37,8 @@ const noto = Noto_Naskh_Arabic({
 
 export const metadata: Metadata = {
   title: "Quran Explorer",
-  description: "Quran Web Application",
+  description:
+    "Read Quran Surahs, Search Ayahs, Customize Reading Experience",
 };
 
 export default function RootLayout({
