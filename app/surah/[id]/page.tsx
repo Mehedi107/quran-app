@@ -2,6 +2,8 @@ import surahs from "@/data/surahs.json";
 import verses from "@/data/verses.json";
 import VerseCard from "@/components/VerseCard";
 import { notFound } from "next/navigation";
+import SettingsSidebar from "@/components/SettingsSidebar";
+
 
 type Props = {
   params: Promise<{
@@ -22,8 +24,13 @@ export default async function SurahPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-10">
-      <div className="max-w-4xl mx-auto">
 
+      <div className="grid md:grid-cols-4 gap-6">
+        <div className="md:col-span-1">
+          <SettingsSidebar />
+        </div>
+        <div className="md:col-span-3 space-y-4">
+          <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-600">
             {surah.name_english}
@@ -44,6 +51,8 @@ export default async function SurahPage({ params }: Props) {
           ))}
         </div>
 
+      </div>
+        </div>
       </div>
     </main>
   );
