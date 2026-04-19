@@ -2,10 +2,12 @@ import Link from "next/link";
 
 type Props = {
   surah: {
-    id: number;
-    name_arabic: string;
-    name_english: string;
-    verses: number;
+    id: number; 
+    name: string; 
+    transliteration: string; 
+    translation: string; 
+    type: string; 
+    total_verses: number; 
   };
 };
 
@@ -25,11 +27,11 @@ export default function SurahCard({ surah }: Props) {
 
             <div>
               <h2 className="text-lg font-bold text-gray-500">
-                {surah.name_english}
+                {surah.translation}
               </h2>
 
               <p className="text-sm text-gray-500">
-                {surah.verses} Ayahs
+                {surah.total_verses} Ayahs
               </p>
             </div>
 
@@ -37,7 +39,7 @@ export default function SurahCard({ surah }: Props) {
 
           {/* Right */}
           <h3 className="text-2xl font-semibold text-emerald-700">
-            {surah.name_arabic}
+            {surah.name}
           </h3>
 
         </div>

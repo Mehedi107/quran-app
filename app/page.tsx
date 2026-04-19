@@ -1,8 +1,7 @@
-import surahs from "@/data/surahs.json";
+import surahLists from "@/data/suraShort.json";
 import SurahCard from "@/components/SurahCard";
 
 export default function HomePage() {
-
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-10">
       <div className="max-w-5xl mx-auto">
@@ -15,7 +14,7 @@ export default function HomePage() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-4">
-          {surahs.map((surah) => (
+          {surahLists.map((surah) => (
             <SurahCard key={surah.id} surah={surah} />
           ))}
         </div>
